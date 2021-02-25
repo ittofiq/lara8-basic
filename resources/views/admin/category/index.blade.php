@@ -40,10 +40,13 @@
                         -->
                         <td>{{ $categories->firstItem() + $key }}</td>
                         <td>{{ $category->name }}</td>
-                        <!-- Eloquent ORM One to One Relationship
-                          <td>$category->user->name</td>
-                        -->
+                        
+                        <!-- Eloquent ORM One to One Relationship -->
+                        <td>{{ $category->user->name }}</td>
+                        
+                        <!-- Query Builder join table user
                         <td>{{ $category->user_name }}</td>
+                        -->
                         <td>
                           @if($category->created_at == NULL)
                             <span class="text-danger">No Data Set</span>
@@ -52,8 +55,8 @@
                           @endif
                         </td>
                         <td>
-                          <a href="#" class="btn btn-danger">Delete</a>
-                          <a href="{{ url('category/edit/'.$category->id) }}" class="btn btn-warning">Edit</a>
+                          <a href="{{ url('category/softDelete/'.$category->id) }}" class="btn btn-danger">Delete</a>
+                          <a href="{{ route('edit.category', $category->id) }}" class="btn btn-warning">Edit</a>
                         </td>
                       </tr>
                       @endforeach
@@ -82,6 +85,60 @@
                       </div>
                       <button type="submit" class="btn btn-primary float-right">Add</button>
                     </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-8">
+                <div class="card">
+                  <div class="card-header">
+                    <h5>All Trash</h5>
+                  </div>
+                  <div class="card-body p-0">
+                    <table class="table table-striped mb-0">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">User</th>
+                        <th scope="col">Created At</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @foreach($trashCats as $key => $trashCat)
+                      <tr>
+                        <!-- 
+                          <td>{{ $trashCats->firstItem() + $loop->index }}</td>
+                        -->
+                        <td>{{ $trashCats->firstItem() + $key }}</td>
+                        <td>{{ $trashCat->name }}</td>
+
+                        <!-- Eloquent ORM One to One Relationship -->
+                          <td>{{ $category->user->name }}</td>
+                        
+                        <!-- Query Builder join table user
+                        <td>{{ $trashCat->user_name }}</td>
+                        -->
+                        <td>
+                          @if($trashCat->created_at == NULL)
+                            <span class="text-danger">No Data Set</span>
+                          @else
+                            {{ Carbon\Carbon::parse($trashCat->created_at)->diffForHumans() }}
+                          @endif
+                        </td>
+                        <td>
+                          <a href="{{ route('clear.category', $trashCat->id) }}" class="btn btn-dark">Clear</a>
+                          <a href="{{ url('category/restore/'.$trashCat->id) }}" class="btn btn-info">Restore</a>
+                        </td>
+                      </tr>
+                      @endforeach
+                    </tbody>
+                    </table>
+                  </div>
+                  <div class="card-footer">
+                    {{ $trashCats->links() }}
                   </div>
                 </div>
               </div>

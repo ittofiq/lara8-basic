@@ -16,7 +16,13 @@
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('all.category') }}">
-                        All Category
+                        Category
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('all.brand') }}">
+                        Brand
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('all.multiImage') }}">
+                        Multi Image
                     </x-jet-nav-link>
                 </div>
             </div>

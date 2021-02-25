@@ -10,17 +10,30 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function allCategory()
     {
-    	// $categories = Category::latest()->paginate(5);
+    	$categories = Category::latest()->paginate(5);
+        $trashCats = Category::onlyTrashed()->latest()->paginate(5);
+
     	// $categories = DB::table('categories')->latest()->paginate(5);
 
+        /**
+         * [$categories Query Builder join table user]
+         * @var object
+         *
+        
     	$categories = DB::table('categories')
     		->join('users', 'categories.user_id', 'users.id')
     		->select('categories.*', 'users.name as user_name')
     		->latest()->paginate(5);
+        **/
     	
-    	return view('admin.category.index', compact('categories'));
+    	return view('admin.category.index', compact('categories', 'trashCats'));
     }
 
     public function addCategory(Category $category, Request $request)
@@ -65,7 +78,7 @@ class CategoryController extends Controller
 
     	/**
     	 * [$addCategory insert dengan cara buat class baru]
-    	 * @var Category
+    	 * @var model
     	 * 
     	
     	// Cara ini melakukan input automatis untuk kolom timestamps()
@@ -102,5 +115,23 @@ class CategoryController extends Controller
         DB::table('categories')->where('id', $id)->update($data);
 
     	return redirect()->route('all.category')->with('success', 'Category updated successfull');
+    }
+
+    public function softDelCategory($id)
+    {
+        Category::find($id)->delete();
+        return redirect()->back()->with('success', 'Category softDeleted successfull');
+    }
+
+    public function restoreCategory($id)
+    {
+        Category::withTrashed()->find($id)->restore();
+        return redirect()->back()->with('success', 'Category Restore successfull');
+    }
+
+    public function clearCategory($id)
+    {
+        Category::onlyTrashed()->find($id)->forceDelete();
+        return redirect()->back()->with('success', 'Category force delete successfull');
     }
 }
