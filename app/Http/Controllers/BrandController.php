@@ -109,4 +109,10 @@ class BrandController extends Controller
 
     	return redirect()->route('all.brand')->with('success', 'Brand deleted successfully');
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login')->with('success', 'User logout');
+    }
 }

@@ -65,6 +65,8 @@ Route::post('/multi-image/add', [MultiPictureController::class, 'addMultiImage']
 Route::get('/multi-image/edit/{id}', [MultiPictureController::class, 'editMultiImage'])->name('edit.multiImage');
 Route::get('/multi-image/delete/{id}', [MultiPictureController::class, 'deleteMultiImage'])->name('delete.multiImage');
 
+Route::get('/user/logout', [BrandController::class, 'logout'])->name('user.logout');
+
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
