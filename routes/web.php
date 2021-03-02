@@ -21,11 +21,11 @@ use App\Models\User;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::get('/home', function () {
-    return view('home');
+    return view('welcome');
 });
 
 Route::get('/about', function () {
