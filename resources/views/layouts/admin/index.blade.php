@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 
-@section('admin')
+@section('content')
 <div class="content-wrapper">
   <div class="content">
     <!-- Top Statistics -->
