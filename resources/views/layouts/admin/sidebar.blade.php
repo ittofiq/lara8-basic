@@ -41,23 +41,30 @@
             <ul class="collapse show"  id="dashboard" data-parent="#sidebar-menu">
               <div class="sub-menu">
                 <li class="active">
-                  <a class="sidenav-item-link" href="index.html">
+                  <a class="sidenav-item-link" href="{{ route('all.slider') }}">
+                    <span class="nav-text">Slider</span>
+                  </a>
+                </li>
+                <li class="active">
+                  <a class="sidenav-item-link" href="{{ route('all.about')}}">
                     <span class="nav-text">About</span>
                   </a>
                 </li>
                 <li>
-                  <a class="sidenav-item-link" href="analytics.html">
+                  <a class="sidenav-item-link" href="{{ route('all.multiImage') }}">
                     <span class="nav-text">Portofolio</span>
-                    <span class="badge badge-success">new</span>
                   </a>
                 </li>
                 <li>
                   <a class="sidenav-item-link" href="{{ route('all.brand') }}">
                     <span class="nav-text">Brand</span>
-                    <span class="badge badge-success">new</span>
                   </a>
                 </li>
-
+                <li>
+                  <a class="sidenav-item-link" href="{{ route('all.category') }}">
+                    <span class="nav-text">Category</span>
+                  </a>
+                </li>
               </div>
             </ul>
           </li>

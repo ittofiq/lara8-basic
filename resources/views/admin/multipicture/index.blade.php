@@ -1,9 +1,8 @@
-<x-app-layout>
-  <x-slot name="header">
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      Multi Picture
-    </h2>
-  </x-slot>
+@extends('layouts.admin.master')
+
+@section('content')
+<div class="content-wrapper">
+  <div class="content">
 
   <div class="py-12">
     <div class="container">
@@ -19,15 +18,15 @@
           @endif
           <div class="card-group">
             @foreach($pictures as $key => $picture)
-              <div class="col-md-4 mt-5">
-                <div class="card">
+              <div class="col-md-4">
+                <div class="card my-2">
                   <img src="{{ asset($picture->image) }}">
                 </div>
               </div>
             @endforeach
-            <div class="col-12 mt-5">
+          </div>
+          <div class="pagination pagination-flat pagination-flat-rounded">
               {{ $pictures->links() }}
-            </div>
           </div>
         </div>
         <div class="col-4">
@@ -53,4 +52,6 @@
       </div>
     </div>
   </div>
-</x-app-layout>
+  </div>
+</div>
+@endsection

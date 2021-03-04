@@ -1,9 +1,8 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            All Category
-        </h2>
-    </x-slot>
+@extends('layouts.admin.master')
+
+@section('content')
+<div class="content-wrapper">
+  <div class="content">
 
     <div class="py-12">
         <div class="container">
@@ -63,9 +62,9 @@
                     </tbody>
                     </table>
                   </div>
-                  <div class="card-footer">
-                    {{ $categories->links() }}
-                  </div>
+                </div>
+                <div class="pagination mt-2">
+                  {{ $categories->links() }}
                 </div>
               </div>
               <div class="col-4">
@@ -145,4 +144,6 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+  </div>
+</div>
+@endsection

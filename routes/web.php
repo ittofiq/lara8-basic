@@ -7,6 +7,9 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\MultiPictureController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SliderController;
+use App\Http\Controllers\AboutController;
 use App\Models\User;
 
 /*
@@ -20,10 +23,7 @@ use App\Models\User;
 |
 */
 
-Route::get('/', function () {
-	$brands = DB::table('brands')->get();
-    return view('home', compact('brands'));
-});
+Route::get('/', [HomeController::class, 'index'])->name('index');
 
 Route::get('/home', function () {
     return view('welcome');
@@ -46,6 +46,19 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 	// $users = DB::table('users')->get();
     return view('layouts.admin.index');
 })->name('dashboard');
+
+Route::get('/slider/all', [SliderController::class, 'allSlider'])->name('all.slider');
+Route::get('/slider/create', [SliderController::class, 'createSlider'])->name('create.slider');
+Route::post('/slider/store', [SliderController::class, 'storeSlider'])->name('store.slider');
+Route::get('/slider/edit/{id}', [SliderController::class, 'editSlider'])->name('edit.slider');
+Route::get('/slider/delete/{id}', [SliderController::class, 'deleteSlider'])->name('delete.slider');
+
+Route::get('/about/all', [AboutController::class, 'allAbout'])->name('all.about');
+Route::get('/about/create', [AboutController::class, 'createAbout'])->name('create.about');
+Route::post('/about/store', [AboutController::class, 'storeAbout'])->name('store.about');
+Route::get('/about/edit/{id}', [AboutController::class, 'editAbout'])->name('edit.about');
+Route::post('/about/update/{id}', [AboutController::class, 'updateAbout'])->name('update.about');
+Route::get('/about/delete/{id}', [AboutController::class, 'deleteAbout'])->name('delete.about');
 
 Route::get('/category/all', [CategoryController::class, 'allCategory'])->name('all.category');
 Route::post('/category/add', [CategoryController::class, 'addCategory'])->name('store.category');

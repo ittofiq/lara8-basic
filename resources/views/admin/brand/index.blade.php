@@ -55,9 +55,9 @@
                 </tbody>
                 </table>
               </div>
-              <div class="card-footer">
-                {{ $brands->links() }}
-              </div>
+            </div>
+            <div class="pagination pagination-flat pagination-flat-rounded mt-2">
+              {{ $brands->links() }}
             </div>
           </div>
           <div class="col-4">
