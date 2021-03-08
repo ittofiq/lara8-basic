@@ -41,9 +41,7 @@
 
   @include('layouts.home.header')
 
-  @include('layouts.home.slider')
-
-  @yield('home')
+  @yield('content')
 
   @include('layouts.home.footer')
 

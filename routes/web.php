@@ -24,6 +24,7 @@ use App\Models\User;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::get('/portfolio', [HomeController::class, 'portfolio'])->name('portfolio');
 
 Route::get('/home', function () {
     return view('welcome');
@@ -78,6 +79,13 @@ Route::get('/multi-image/all', [MultiPictureController::class, 'allMultiImage'])
 Route::post('/multi-image/add', [MultiPictureController::class, 'addMultiImage'])->name('store.multiImage');
 Route::get('/multi-image/edit/{id}', [MultiPictureController::class, 'editMultiImage'])->name('edit.multiImage');
 Route::get('/multi-image/delete/{id}', [MultiPictureController::class, 'deleteMultiImage'])->name('delete.multiImage');
+
+Route::get('/contact/all', [ContactController::class, 'allContact'])->name('all.contact');
+Route::get('/contact/create', [ContactController::class, 'createContact'])->name('create.contact');
+Route::post('/contact/store', [ContactController::class, 'storeContact'])->name('store.contact');
+Route::get('/contact/edit/{id}', [ContactController::class, 'editContact'])->name('edit.contact');
+Route::post('/contact/update/{id}', [ContactController::class, 'updateContact'])->name('update.contact');
+Route::get('/contact/delete/{id}', [ContactController::class, 'deleteContact'])->name('delete.contact');
 
 Route::get('/user/logout', [BrandController::class, 'logout'])->name('user.logout');
 

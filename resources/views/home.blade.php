@@ -1,6 +1,7 @@
 @extends('layouts.home.master')
+@include('layouts.home.slider')
 
-@section('home')
+@section('content')
 <main id="main">
 
     <!-- ======= About Us Section ======= -->

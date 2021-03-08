@@ -18,4 +18,10 @@ class HomeController extends Controller
 		$multiImages = MultiPicture::all();
 		return view('home', compact('brands', 'sliders', 'about', 'multiImages'));
 	}
+
+	public function portfolio()
+	{
+		$portfolios = MultiPicture::all();
+		return view('pages.portfolio', compact('portfolios'));
+	}
 }
